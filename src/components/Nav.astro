@@ -7,7 +7,6 @@ import type { iconPaths } from "./IconPaths";
 const textLinks: { label: string; href: string }[] = [
   { label: "首页", href: "/" },
   { label: "文章", href: "/articles/" },
-  { label: "项目", href: "/projects/" },
   { label: "归档", href: "/archive/" },
   { label: "友情链接", href: "/friends/" },
   { label: "关于我", href: "/about/" },
@@ -19,18 +18,9 @@ const iconLinks: {
   href: string;
   icon: keyof typeof iconPaths;
 }[] = [
-  {
-    label: "Twitter",
-    href: "https://twitter.com/LYangwu",
-    icon: "twitter-logo",
-  },
-  { label: "GitHub", href: "https://github.com/Licodeao", icon: "github-logo" },
-  {
-    label: "Juejin",
-    href: "https://juejin.cn/user/3589272523509629/posts",
-    icon: "juejin-logo",
-  },
-  { label: "RSS", href: "/rss.xml", icon: "rss" },
+  { label: "X", href: "https://twitter.com/uguang666", icon: "X-logo" },
+  { label: "GitHub", href: "https://github.com/uguang2003", icon: "github-logo" },
+  // { label: "RSS", href: "/rss.xml", icon: "rss" },
 ];
 ---
 
@@ -43,7 +33,7 @@ const iconLinks: {
         size="1.6em"
         gradient
       />
-      Licodeao's Blog
+      UG's Blog
     </a>
     <menu-button>
       <template>

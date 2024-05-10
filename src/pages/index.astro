@@ -11,7 +11,6 @@ import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
 import PortfolioPreview from "../components/PortfolioPreview.astro";
-import ProjectsPreview from "../components/ProjectsPreview.astro";
 
 // Page section components
 import Skills from "../components/Skills.astro";
@@ -21,15 +20,8 @@ const projects = (await getCollection("articles"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 6);
 
-const realProjects = (await getCollection("projects"))
-  .sort((a, b) => b.data.publishDate - a.data.publishDate)
-  .slice(0, 4);
-
 // 文章总数
 const articleCount = (await getCollection("articles")).length;
-
-// 项目总数
-const projectCount = (await getCollection("projects")).length;
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
@@ -39,8 +31,8 @@ const projectCount = (await getCollection("projects")).length;
     <div class="wrapper stack gap-8 lg:gap-20">
       <header class="hero">
         <Hero
-          title="Hello, my name is Licodeao 🧑🏻‍💻"
-          tagline="「流水不争先，争的是滔滔不绝」"
+          title="Hello, my name is UG 🧑🏻‍💻"
+          tagline="「三段码之气少年」"
           align="start"
         >
           <div class="roles">
@@ -51,10 +43,10 @@ const projectCount = (await getCollection("projects")).length;
         </Hero>
 
         <img
-          alt="Licodeao's photo"
+          alt="UG's photo"
           width="450"
           height="450"
-          src="https://typora-licodeao.oss-cn-guangzhou.aliyuncs.com/typoraImg/avatar1.jpg"
+          src="https://ug666.top/images/me.jpg"
           style="border-radius: 50%; box-shadow: var(--shadow-md); height:450px; width:450px;"
           class="avatar"
         />
@@ -95,38 +87,6 @@ const projectCount = (await getCollection("projects")).length;
       </section>
     </main>
 
-    <main class="wrapper stack gap-20 lg:gap-48">
-      <section class="section with-background with-cta">
-        <header class="section-header stack gap-2 lg:gap-4">
-          <h3>近期项目</h3>
-          <p>
-            当前总计有 <strong style="text-decoration:underline;"
-              >{projectCount}</strong
-            > 个项目。
-          </p>
-        </header>
-
-        <div class="gallery">
-          <Grid variant="offset">
-            {
-              realProjects.map((project) => (
-                <li>
-                  <ProjectsPreview projects={project} />
-                </li>
-              ))
-            }
-          </Grid>
-        </div>
-
-        <div class="cta">
-          <CallToAction href="/projects/">
-            查看全部项目
-            <Icon icon="arrow-right" size="1.2em" />
-          </CallToAction>
-        </div>
-      </section>
-    </main>
-  </div>
 </BaseLayout>
 
 <style>

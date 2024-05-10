@@ -13,5 +13,5 @@ export default defineConfig({
     syntaxHighlight: false,
     rehypePlugins: [[rehypePrettyCode, options]],
   },
-  site: "https://licodeao.top",
+  site: "https://ug666.top",
 });

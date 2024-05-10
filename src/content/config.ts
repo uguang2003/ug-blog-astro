@@ -18,10 +18,10 @@ export const collections = {
 };
 
 export const SITE = {
-  website: "https://licodeao.top",
-  author: "Licodeao",
-  desc: "Recording life and coding journey of Licodeao",
-  title: "Licodeao's Blog",
+  website: "https://UG.top",
+  author: "UG",
+  desc: "Recording life and coding journey of UG",
+  title: "UG's Blog",
   avatar:
-    "https://typora-licodeao.oss-cn-guangzhou.aliyuncs.com/typoraImg/avatar1.jpg",
+    "https://ug666.top/images/me.jpg",
 };
