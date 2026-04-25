@@ -1,45 +1,56 @@
 ---
-import { getCollection } from "astro:content";
+/**
+ * @description: 文章归档页。按年份分组展示所有已发布博客。
+ * @author: UG - 一个斗码大陆苦逼的三段码之气的少年，并没有神秘戒指中码老的帮助，但总有一天，我会成为斗码大陆中码帝一样的存在。三十年河东，三十年河西，莫欺少年穷。
+ * @date: 2026-04-25
+ */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import { fetchAllBlogs, type BlogSummary } from "../lib/api";
 
-const articlesByYear = {};
+const blogs = await fetchAllBlogs();
 
-(await getCollection("articles")).forEach((airticle) => {
-  const publishYear = new Date(airticle.data.publishDate).getFullYear();
-
-  if (!articlesByYear[publishYear]) {
-    articlesByYear[publishYear] = [];
-  }
-
-  articlesByYear[publishYear].push(airticle);
-});
-
-const articlesByYearArray = Object.entries(articlesByYear).reverse();
+const grouped: Record<string, BlogSummary[]> = {};
+for (const b of blogs) {
+  const year = b.createTime ? new Date(b.createTime).getFullYear() : 0;
+  const key = year > 0 ? String(year) : "未知";
+  if (!grouped[key]) grouped[key] = [];
+  grouped[key].push(b);
+}
+const groupedArr = Object.entries(grouped).sort(
+  ([a], [b]) => Number(b) - Number(a),
+);
 ---
 
 <BaseLayout title="归档" description="Articles Archiving">
   <div class="stack gap-20">
     <main class="wrapper stack gap-8">
       <Hero title="归档" tagline="留下时光的痕迹。" align="start" />
-      <!-- <Grid variant="offset"> -->
       <ul style="padding:0 !important;">
         {
-          articlesByYearArray.map(([key, value]: [string, any]) => (
+          groupedArr.map(([year, list]) => (
             <>
-              <h2>{key}</h2>
-              {value
-                .sort((a, b) => b.data.publishDate - a.data.publishDate)
-                .map((article) => (
+              <h2>{year}</h2>
+              {list
+                .sort((a, b) => {
+                  const ta = a.createTime
+                    ? new Date(a.createTime).valueOf()
+                    : 0;
+                  const tb = b.createTime
+                    ? new Date(b.createTime).valueOf()
+                    : 0;
+                  return tb - ta;
+                })
+                .map((blog) => (
                   <li style="margin: 10px 0;">
-                    <div style="display:flex; just-content:space-around; align-items:center; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:10px;">
                       <span style="width:100px;background-color:#666; border-radius:5px;text-align:center; color:#fff;">
-                        {new Date(
-                          article.data.publishDate
-                        ).toLocaleDateString()}
+                        {blog.createTime
+                          ? new Date(blog.createTime).toLocaleDateString()
+                          : "—"}
                       </span>
-                      <a href={`/articles/${article.slug}`}>
-                        {article.data.title}
+                      <a href={`/articles/${blog.id}`}>
+                        {blog.title ?? "(无标题)"}
                       </a>
                     </div>
                   </li>
@@ -48,7 +59,6 @@ const articlesByYearArray = Object.entries(articlesByYear).reverse();
           ))
         }
       </ul>
-      <!-- </Grid> -->
     </main>
   </div>
 </BaseLayout>

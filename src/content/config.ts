@@ -1,27 +1,15 @@
-import { defineCollection, z } from "astro:content";
+/**
+ * @description: 仅保留 SITE 常量。原 articles content collection 改为从后端 API 拉取，已停用。
+ * @author: UG - 一个斗码大陆苦逼的三段码之气的少年，并没有神秘戒指中码老的帮助，但总有一天，我会成为斗码大陆中码帝一样的存在。三十年河东，三十年河西，莫欺少年穷。
+ * @date: 2026-04-25
+ */
 
-// 定义内容集合的验证规则，如 md 文件的 frontmatter
-export const collections = {
-  articles: defineCollection({
-    type: "content",
-    schema: z.object({
-      author: z.string(),
-      title: z.string(),
-      description: z.string(),
-      publishDate: z.coerce.date(),
-      tags: z.array(z.string()),
-      img: z.string(),
-      img_alt: z.string().optional(),
-      site: z.string().optional(),
-    }),
-  }),
-};
+export const collections = {};
 
 export const SITE = {
-  website: "https://UG.top",
-  author: "UG",
+  website: 'https://ug666.top',
+  author: 'UG',
   desc: "Recording life and coding journey of UG",
   title: "UG's Blog",
-  avatar:
-    "https://ug666.top/images/me.jpg",
+  avatar: 'https://ug666.top/images/me.jpg',
 };

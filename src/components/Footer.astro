@@ -1,28 +1,20 @@
 ---
-import Icon from './Icon.astro';
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-	<div class="group">
-		<p>
-			UG with <a href="https://astro.build/">Astro</a>
-			<Icon icon="rocket-launch" size="1.2em" />
-		</p>
-		<p>&copy; 2021 - {currentYear} UG</p>
-	</div>
+	<p>&copy; 2021 - {currentYear} UG</p>
 	<p class="socials">
-		<a href="https://twitter.com/uguang666"> X</a>
-		<a href="https://github.com/uguang2003"> GitHub</a>
+		<a href="https://github.com/uguang2003">GitHub</a>
 	</p>
 </footer>
 <style>
 	footer {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
+		gap: 1rem;
 		margin-top: auto;
-		padding: 3rem 2rem 3rem;
+		padding: 3rem 2rem;
 		text-align: center;
 		color: var(--gray-400);
 		font-size: var(--text-sm);
@@ -40,12 +32,6 @@ const currentYear = new Date().getFullYear();
 		text-decoration-color: currentColor;
 	}
 
-	.group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
 	.socials {
 		display: flex;
 		justify-content: center;
@@ -58,12 +44,6 @@ const currentYear = new Date().getFullYear();
 			flex-direction: row;
 			justify-content: space-between;
 			padding: 2.5rem 5rem;
-		}
-
-		.group {
-			flex-direction: row;
-			gap: 1rem;
-			flex-wrap: wrap;
 		}
 
 		.socials {

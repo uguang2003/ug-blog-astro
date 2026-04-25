@@ -1,9 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
-import ArticleHead from "./ArticleHead.astro";
-
-const pathname = Astro.url.pathname.includes("articles");
 ---
 
 <meta charset="UTF-8" />
@@ -11,8 +8,6 @@ const pathname = Astro.url.pathname.includes("articles");
 <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <meta name="generator" content={Astro.generator} />
-
-{pathname && <ArticleHead />}
 
 <ViewTransitions />
 
